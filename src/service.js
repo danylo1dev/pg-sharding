@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const { hr, clients } = require("../database.config");
-const statusCode = require("./utils/statusCode");
+const statusCode = require("http-status");
 exports.create = async (url) => {
   try {
     const hash = crypto.createHash("sha256").update(url).digest("base64");
@@ -19,7 +19,7 @@ exports.create = async (url) => {
     };
   } catch (err) {
     if (!err.statusCode) {
-      err.statusCode = statusCode.internallError;
+      err.statusCode = statusCode.INTERNAL_SERVER_ERROR;
     }
     return err;
   }
@@ -41,7 +41,7 @@ exports.getById = async (urlId) => {
     };
   } catch (err) {
     if (!err.statusCode) {
-      err.statusCode = statusCode.internallError;
+      err.statusCode = statusCode.INTERNAL_SERVER_ERROR;
     }
     return err;
   }

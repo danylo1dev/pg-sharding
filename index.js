@@ -6,6 +6,6 @@ app.use(router);
 
 database.connect();
 app.use(errorHandler);
-app.listen("3000", () => {
-  console.log("server started on post 3000");
+app.listen(process.env.PORT, () => {
+  console.log("server started on post " + process.env.PORT);
 });
